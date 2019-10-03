@@ -7,6 +7,7 @@
 #include "SceneFlee.h"
 #include "SceneSeekFlee.h"
 #include "SceneArrive.h"
+#include "SceneWander.h"
 
 
 using namespace std;
@@ -30,36 +31,30 @@ int main(int argc, char ** argv)
 		switch (event.type)
 		{
 		case SDL_KEYDOWN:
-			if (event.key.keysym.scancode == SDL_SCANCODE_1)
-			{
-				delete(curr_scene);
-				curr_scene = new SceneSeek;
-				app->setWindowTitle(curr_scene->getTitle());
-			}
-			if (event.key.keysym.scancode == SDL_SCANCODE_2)
-			{
-				delete(curr_scene);
-				curr_scene = new SceneFlee;
-				app->setWindowTitle(curr_scene->getTitle());
-			}
-			if (event.key.keysym.scancode == SDL_SCANCODE_3)
-			{
-				delete(curr_scene);
-				curr_scene = new SceneSeekFlee;
-				app->setWindowTitle(curr_scene->getTitle());
-			}if (event.key.keysym.scancode == SDL_SCANCODE_4)
-			{
-				delete(curr_scene);
-				curr_scene = new SceneArrive;
-				app->setWindowTitle(curr_scene->getTitle());
-			}
-			if ((event.key.keysym.scancode == SDL_SCANCODE_Q) || (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))
-			{
+			switch (event.key.keysym.scancode) {
+			case SDL_SCANCODE_1:
+				LoadScene(new SceneSeek, curr_scene, app);
+				break;
+			case SDL_SCANCODE_2:
+				LoadScene(new SceneFlee, curr_scene, app);
+				break;
+			case SDL_SCANCODE_3:
+				LoadScene(new SceneSeekFlee, curr_scene, app);
+				break;
+			case SDL_SCANCODE_4:
+				LoadScene(new SceneArrive, curr_scene, app);
+				break;
+			case SDL_SCANCODE_7:
+				LoadScene(new SceneWander, curr_scene, app);
+				break;
+			case SDL_SCANCODE_Q:
+			case SDL_SCANCODE_ESCAPE:
 				quit = true;
-			}
-			if (event.key.keysym.scancode == SDL_SCANCODE_F)
-			{
+				break;
+			case SDL_SCANCODE_F:
 				app->setFullScreen();
+			default:
+				break;
 			}
 			break;
 		case SDL_QUIT:
@@ -70,4 +65,10 @@ int main(int argc, char ** argv)
 	}
 
 	return 0;
+}
+
+void LoadScene(Scene* scene, Scene* curr_scene, SDL_SimpleApp* app) {
+	delete(curr_scene);
+	curr_scene = scene;
+	app->setWindowTitle(curr_scene->getTitle());
 }
