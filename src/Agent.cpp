@@ -160,12 +160,37 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 	return true;
 }
 
-void Agent::getDesiredVelocity(Vector2D& desiredVelocityOut) {
-	desiredVelocityOut = target - position;
+void Agent::getDesiredVelocity(Vector2D& desiredVelocityOut, bool seek, float speedFactor) {
+	if (seek)
+		desiredVelocityOut = target - position;
+	else
+		desiredVelocityOut = position - target;
 	desiredVelocityOut.Normalize();
+	desiredVelocityOut *= max_velocity * speedFactor;
 }
 
 void Agent::getDistanceToTarget(float& distanceOut) {
 
 	distanceOut = (target - position).Length();
+}
+
+void Agent::calculateSpeedFactor(float& speedFactor, float dist, float radius) {
+	speedFactor = 1;
+	if (dist < radius)
+		speedFactor = dist / radius;
+}
+
+void Agent::calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity) {
+
+	vDelta = desiredVelocity - velocity;
+	vDelta /= max_velocity;
+
+	steeringForce = vDelta * max_force;
+}
+
+void Agent::UpdateForces(Vector2D steeringForce, float dtime) {
+	// acceleration = steeringForce / mass;
+	velocity += (steeringForce / mass) * dtime;
+	velocity.Truncate(max_velocity);
+	position += velocity * dtime;
 }

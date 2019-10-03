@@ -23,6 +23,7 @@ private:
 	Vector2D position;
 	Vector2D velocity;
 	Vector2D target;
+	Vector2D vDelta;
 
 	float speed;
 	float orientation;
@@ -54,7 +55,10 @@ public:
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
-	void getDesiredVelocity(Vector2D&);
-	void getDistanceToTarget(float&);
-	
+	void getDesiredVelocity(Vector2D& desiredVelocityOut, bool seek = true, float speedFactor = 1);
+	void getDistanceToTarget(float& distanceOut);
+	void calculateSpeedFactor(float& speedFactor, float dist, float radius);
+	void calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity);
+	void UpdateForces(Vector2D steeringForce, float dtime);
+
 };

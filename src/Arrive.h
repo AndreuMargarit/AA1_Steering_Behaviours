@@ -9,7 +9,7 @@ public:
 	~Arrive();
 	void applySteeringForce(Agent *agent, float dtime);
 private:
-	Vector2D desiredVelocity, vDelta, steeringForce, acceleration, velocity;
-	float dist, speedFactor;
+	Vector2D desiredVelocity, steeringForce;
+	float dist, speedFactor, radius;
 };
 
