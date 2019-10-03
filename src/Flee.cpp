@@ -9,9 +9,8 @@ Flee::~Flee()
 
 void Flee::applySteeringForce(Agent *agent, float dtime)
 {
-	desiredVelocity = agent->getPosition() - agent->getTarget();
-	dist = desiredVelocity.Length();
-	desiredVelocity.Normalize();
+	agent->getDesiredVelocity(desiredVelocity);
+
 	desiredVelocity *= agent->getMaxVelocity();
 	vDelta = desiredVelocity - agent->getVelocity();
 	vDelta /= agent->getMaxVelocity();

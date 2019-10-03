@@ -13,15 +13,16 @@ Arrive::~Arrive()
 
 void Arrive::applySteeringForce(Agent *agent, float dtime)
 {
-	desiredVelocity = agent->getTarget() - agent->getPosition();
-	dist = desiredVelocity.Length();
-	desiredVelocity.Normalize();
+
+	agent->getDesiredVelocity(desiredVelocity);
+	agent->getDistanceToTarget(dist);
 
 	speedFactor = 1;
 	if (dist < 300)
 	{
 		speedFactor = dist / 300;
 	}
+
 	desiredVelocity *= agent->getMaxVelocity() * speedFactor;
 	vDelta = desiredVelocity - agent->getVelocity();
 	vDelta /= agent->getMaxVelocity();

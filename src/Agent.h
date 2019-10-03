@@ -54,5 +54,7 @@ public:
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
+	void getDesiredVelocity(Vector2D&);
+	void getDistanceToTarget(float&);
 	
 };

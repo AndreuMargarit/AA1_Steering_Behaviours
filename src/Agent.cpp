@@ -159,3 +159,13 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 
 	return true;
 }
+
+void Agent::getDesiredVelocity(Vector2D& desiredVelocityOut) {
+	desiredVelocityOut = target - position;
+	desiredVelocityOut.Normalize();
+}
+
+void Agent::getDistanceToTarget(float& distanceOut) {
+
+	distanceOut = (target - position).Length();
+}

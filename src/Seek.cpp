@@ -9,9 +9,7 @@ Seek::~Seek()
 
 void Seek::applySteeringForce(Agent *agent, float dtime)
 {
-	desiredVelocity = agent->getTarget() - agent->getPosition();
-	dist = desiredVelocity.Length();
-	desiredVelocity.Normalize();
+	agent->getDesiredVelocity(desiredVelocity);
 	desiredVelocity *= agent->getMaxVelocity();
 	vDelta = desiredVelocity - agent->getVelocity();
 	vDelta /= agent->getMaxVelocity();
