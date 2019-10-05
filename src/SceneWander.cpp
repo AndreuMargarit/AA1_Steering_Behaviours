@@ -42,7 +42,9 @@ void SceneWander::update(float dtime, SDL_Event *event)
 
 void SceneWander::draw()
 {
-	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
+	draw_circle(TheApp::Instance()->getRenderer(), agents[0]->getCircleCenter().x, agents[0]->getCircleCenter().y, 75, 255, 0, 0, 255);
+	draw_circle(TheApp::Instance()->getRenderer(), agents[0]->getTarget().x, agents[0]->getTarget().y, 10, 0, 255, 0, 255);
+
 	agents[0]->draw();
 }
 

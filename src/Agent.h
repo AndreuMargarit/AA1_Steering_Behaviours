@@ -24,6 +24,7 @@ private:
 	Vector2D velocity;
 	Vector2D target;
 	Vector2D vDelta;
+	Vector2D circleCenter;
 
 	float speed;
 	float orientation;
@@ -43,8 +44,11 @@ public:
 	Vector2D getPosition();
 	Vector2D getTarget();
 	Vector2D getVelocity();
+	Vector2D getCircleCenter();
+	void setCircleCenter(Vector2D circleCenter);
 	float getMaxVelocity();
 	void setBehavior(SteeringBehavior *behavior);
+	SteeringBehavior* getBehavior();
 	void setPosition(Vector2D position);
 	void setTarget(Vector2D target);
 	void setVelocity(Vector2D velocity);
@@ -52,6 +56,7 @@ public:
 	void setMass(float _mass);
 	float getMaxForce();
 	void setMaxForce(float _force);
+	float getOrientation();
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);

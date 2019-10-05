@@ -33,19 +33,29 @@ int main(int argc, char ** argv)
 		case SDL_KEYDOWN:
 			switch (event.key.keysym.scancode) {
 			case SDL_SCANCODE_1:
-				LoadScene(new SceneSeek, curr_scene, app);
+				delete(curr_scene);
+				curr_scene = new SceneSeek;
+				app->setWindowTitle(curr_scene->getTitle());
 				break;
 			case SDL_SCANCODE_2:
-				LoadScene(new SceneFlee, curr_scene, app);
+				delete(curr_scene);
+				curr_scene = new SceneFlee;
+				app->setWindowTitle(curr_scene->getTitle());
 				break;
 			case SDL_SCANCODE_3:
-				LoadScene(new SceneSeekFlee, curr_scene, app);
+				delete(curr_scene);
+				curr_scene = new SceneSeekFlee;
+				app->setWindowTitle(curr_scene->getTitle());
 				break;
 			case SDL_SCANCODE_4:
-				LoadScene(new SceneArrive, curr_scene, app);
+				delete(curr_scene);
+				curr_scene = new SceneArrive;
+				app->setWindowTitle(curr_scene->getTitle());
 				break;
 			case SDL_SCANCODE_7:
-				LoadScene(new SceneWander, curr_scene, app);
+				delete(curr_scene);
+				curr_scene = new SceneWander;
+				app->setWindowTitle(curr_scene->getTitle());
 				break;
 			case SDL_SCANCODE_Q:
 			case SDL_SCANCODE_ESCAPE:
@@ -67,8 +77,3 @@ int main(int argc, char ** argv)
 	return 0;
 }
 
-void LoadScene(Scene* scene, Scene* curr_scene, SDL_SimpleApp* app) {
-	delete(curr_scene);
-	curr_scene = scene;
-	app->setWindowTitle(curr_scene->getTitle());
-}

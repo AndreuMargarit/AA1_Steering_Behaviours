@@ -31,6 +31,10 @@ void Agent::setBehavior(SteeringBehavior *behavior)
 	steering_behaviour = behavior;
 }
 
+Agent::SteeringBehavior* Agent::getBehavior() {
+	return steering_behaviour;
+}
+
 Vector2D Agent::getPosition()
 {
 	return position;
@@ -44,6 +48,14 @@ Vector2D Agent::getTarget()
 Vector2D Agent::getVelocity()
 {
 	return velocity;
+}
+
+Vector2D Agent::getCircleCenter() {
+	return circleCenter;
+}
+
+void Agent::setCircleCenter(Vector2D circleCenter) {
+	this->circleCenter = circleCenter;
 }
 
 float Agent::getMaxVelocity()
@@ -84,6 +96,10 @@ float Agent::getMaxForce()
 void Agent::setMaxForce(float _force)
 {
 	max_force = _force;
+}
+
+float Agent::getOrientation() {
+	return orientation;
 }
 
 void Agent::update(float dtime, SDL_Event *event)
