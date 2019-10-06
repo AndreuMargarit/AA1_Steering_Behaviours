@@ -137,9 +137,11 @@
     <ClCompile Include="..\src\Agent.cpp" />
     <ClCompile Include="..\src\Arrive.cpp" />
     <ClCompile Include="..\src\Flee.cpp" />
+    <ClCompile Include="..\src\Flock.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\SceneArrive.cpp" />
     <ClCompile Include="..\src\SceneFlee.cpp" />
+    <ClCompile Include="..\src\SceneFlock.cpp" />
     <ClCompile Include="..\src\SceneSeekFlee.cpp" />
     <ClCompile Include="..\src\SceneSeek.cpp" />
     <ClCompile Include="..\src\SceneWander.cpp" />
@@ -152,7 +154,9 @@
     <ClInclude Include="..\src\Agent.h" />
     <ClInclude Include="..\src\Arrive.h" />
     <ClInclude Include="..\src\Flee.h" />
+    <ClInclude Include="..\src\Flock.h" />
     <ClInclude Include="..\src\SceneArrive.h" />
+    <ClInclude Include="..\src\SceneFlock.h" />
     <ClInclude Include="..\src\SceneWander.h" />
     <ClInclude Include="..\src\utils.h" />
     <ClInclude Include="..\src\Scene.h" />

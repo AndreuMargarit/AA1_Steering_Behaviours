@@ -8,6 +8,7 @@
 #include "SceneSeekFlee.h"
 #include "SceneArrive.h"
 #include "SceneWander.h"
+#include "SceneFlock.h"
 
 
 using namespace std;
@@ -55,6 +56,11 @@ int main(int argc, char ** argv)
 			case SDL_SCANCODE_7:
 				delete(curr_scene);
 				curr_scene = new SceneWander;
+				app->setWindowTitle(curr_scene->getTitle());
+				break;
+			case SDL_SCANCODE_8:
+				delete(curr_scene);
+				curr_scene = new SceneFlock;
 				app->setWindowTitle(curr_scene->getTitle());
 				break;
 			case SDL_SCANCODE_Q:
