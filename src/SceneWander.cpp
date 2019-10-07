@@ -6,7 +6,7 @@ using namespace std;
 SceneWander::SceneWander()
 {
 	Agent *agent = new Agent;
-	agent->setBehavior(new Wander);
+	agent->setBehavior(new Wander(agent));
 	agent->setPosition(Vector2D(640, 360));
 	agent->setTarget(Vector2D(640, 360));
 	agent->loadSpriteTexture("../res/soldier.png", 4);
@@ -42,7 +42,7 @@ void SceneWander::update(float dtime, SDL_Event *event)
 
 void SceneWander::draw()
 {
-	draw_circle(TheApp::Instance()->getRenderer(), agents[0]->getCircleCenter().x, agents[0]->getCircleCenter().y, 75, 255, 0, 0, 255);
+	draw_circle(TheApp::Instance()->getRenderer(), agents[0]->getCircleCenter().x, agents[0]->getCircleCenter().y, 150, 255, 0, 0, 255);
 	draw_circle(TheApp::Instance()->getRenderer(), agents[0]->getTarget().x, agents[0]->getTarget().y, 10, 0, 255, 0, 255);
 
 	agents[0]->draw();

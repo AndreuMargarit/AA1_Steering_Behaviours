@@ -8,6 +8,13 @@ Wander::Wander()
 	lastAngle = 0;
 }
 
+Wander::Wander(Agent *agent)
+{
+	_wanderAngle = 0;
+	_targetAngle = 0;
+	lastAngle = - agent->getOrientation();
+}
+
 Wander::~Wander()
 {
 }
@@ -23,17 +30,8 @@ float Wander::RandomBinomial() {
 
 void Wander::UpdateWanderAngle(Agent *agent) {
 	_wanderAngle += RandomBinomial() * _wanderMaxAngleChange;
-	_targetAngle = agent->getOrientation() + _wanderAngle;
-	/*
-	lastAngle = agent->getOrientation();
-	angleDelta = lastAngle - _targetAngle;
-
-	if (angleDelta > 180.0f)
-		_targetAngle += 360.0f;
-	else if (angleDelta < -180.0f)
-		_targetAngle -= 360.0f;
-
-	_targetAngle = lerp(_targetAngle, lastAngle, 0.1f);*/
+	_targetAngle = lastAngle + _wanderAngle;
+	lastAngle = _targetAngle;
 }
 
 void Wander::CalculateNewWanderPosition(Agent *agent) {
