@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include <iostream>
 #include <minmax.h>
 #include <SDL.h>
@@ -37,14 +38,18 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
+	std::vector<Agent*> neighbors;
+	const int NEIGHBOR_RADIUS = 10;
 
 public:
 	Agent();
+	Agent(Vector2D veloc);
 	~Agent();
 	Vector2D getPosition();
 	Vector2D getTarget();
 	Vector2D getVelocity();
 	Vector2D getCircleCenter();
+	void setAgents(std::vector<Agent*> agents);
 	void setCircleCenter(Vector2D circleCenter);
 	float getMaxVelocity();
 	void setBehavior(SteeringBehavior *behavior);
@@ -65,5 +70,6 @@ public:
 	void calculateSpeedFactor(float& speedFactor, float dist, float radius);
 	void calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity);
 	void UpdateForces(Vector2D steeringForce, float dtime);
-
+	void setNeighbors(std::vector<Agent*> agents);
+	std::vector<Agent*> getNeighbors();
 };
