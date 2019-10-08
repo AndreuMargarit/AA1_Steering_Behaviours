@@ -58,6 +58,12 @@ struct Vector2D
 	{
 		return Vector2D(x * scalar, y * scalar);
 	}
+	
+	inline Vector2D operator*(Vector2D& v2)
+	{
+		return Vector2D(x * v2.x, y * v2.y);
+	}
+
 	inline void operator*=(float scalar)
 	{
 		x *= scalar;

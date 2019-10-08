@@ -169,3 +169,13 @@ void Agent::getDistanceToTarget(float& distanceOut) {
 
 	distanceOut = (target - position).Length();
 }
+
+void Agent::setTargetAgent(Agent * target)
+{
+	targetAgent = target;
+}
+
+Agent* Agent::getTargetAgent()
+{
+	return targetAgent;
+}

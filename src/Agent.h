@@ -24,6 +24,8 @@ private:
 	Vector2D velocity;
 	Vector2D target;
 
+	Agent *targetAgent;
+
 	float speed;
 	float orientation;
 	float max_force;
@@ -56,5 +58,7 @@ public:
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 	void getDesiredVelocity(Vector2D&);
 	void getDistanceToTarget(float&);
-	
+	void setTargetAgent(Agent* target);
+	Agent* getTargetAgent();
+
 };
