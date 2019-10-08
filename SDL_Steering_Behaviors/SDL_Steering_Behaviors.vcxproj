@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{48D8AFB0-551E-45CB-8730-E2CF8571445D}</ProjectGuid>
     <RootNamespace>SDL_Steering_Behaviors</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -136,11 +136,13 @@
     <ClCompile Include="..\src\Flee.cpp" />
     <ClCompile Include="..\src\Flock.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\PathFollowing.cpp" />
     <ClCompile Include="..\src\Pursue.cpp" />
     <ClCompile Include="..\src\SceneArrive.cpp" />
     <ClCompile Include="..\src\SceneEvade.cpp" />
     <ClCompile Include="..\src\SceneFlee.cpp" />
     <ClCompile Include="..\src\SceneFlock.cpp" />
+    <ClCompile Include="..\src\ScenePathFollowing.cpp" />
     <ClCompile Include="..\src\ScenePursue.cpp" />
     <ClCompile Include="..\src\SceneSeekFlee.cpp" />
     <ClCompile Include="..\src\SceneSeek.cpp" />
@@ -156,9 +158,11 @@
     <ClInclude Include="..\src\Evade.h" />
     <ClInclude Include="..\src\Flee.h" />
     <ClInclude Include="..\src\Flock.h" />
+    <ClInclude Include="..\src\PathFollowing.h" />
     <ClInclude Include="..\src\Pursue.h" />
     <ClInclude Include="..\src\SceneArrive.h" />
     <ClInclude Include="..\src\SceneFlock.h" />
+    <ClInclude Include="..\src\ScenePathFollowing.h" />
     <ClInclude Include="..\src\SceneWander.h" />
     <ClInclude Include="..\src\SceneEvade.h" />
     <ClInclude Include="..\src\ScenePursue.h" />

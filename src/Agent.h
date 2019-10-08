@@ -73,6 +73,8 @@ public:
 	void calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity);
 	void UpdateForces(Vector2D steeringForce, float dtime);
 	void setNeighbors(std::vector<Agent*> agents);
+	int getNumPathPoints();
+	
 	std::vector<Agent*> getNeighbors();
 	void setTargetAgent(Agent* target);
 	Agent* getTargetAgent();

@@ -12,6 +12,6 @@ private:
 	Vector2D desiredVelocity, vDelta, steeringForce, acceleration, velocity;
 	Vector2D prediction, targetVel, dist;
 	float t;
-	float maxTime = 100;
+	float maxTime = 0.2;
 };
 

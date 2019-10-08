@@ -3,16 +3,19 @@
 #include "Scene.h"
 #include "Agent.h"
 
-class ScenePursue : public Scene
+class ScenePathFollowing :
+	public Scene
 {
 public:
-	ScenePursue();
-	~ScenePursue();
+	ScenePathFollowing();
+	~ScenePathFollowing();
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	const char* getTitle();
 private:
 	std::vector<Agent*> agents;
-	Vector2D target, predict;
+	Vector2D target;
+	Vector2D trail[110];
+	int trailCounter, trailMax, nextTrail = 0;
 };
 

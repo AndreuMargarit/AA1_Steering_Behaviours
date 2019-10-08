@@ -35,13 +35,14 @@ void Evade::applySteeringForce(Agent *agent, float dtime)
 		t = dist.Length() / agent->getMaxVelocity();
 	}
 
-	//if (t > maxTime) t = maxTime;
+	if (t > maxTime) t = maxTime;
 
 	agent->setTarget((agent->getTargetAgent()->getPosition() + agent->getTargetAgent()->getVelocity() * t));
 	//agent->setTarget(agent->getTargetAgent()->getTarget() * (agent->getTargetAgent()->getPosition()-agent->getPosition()));
 
-
+	
 	agent->getDesiredVelocity(desiredVelocity);
+	desiredVelocity = Vector2D(-desiredVelocity.x, -desiredVelocity.y);
 	desiredVelocity *= agent->getMaxVelocity();
 	vDelta = desiredVelocity - agent->getVelocity();
 	vDelta /= agent->getMaxVelocity();

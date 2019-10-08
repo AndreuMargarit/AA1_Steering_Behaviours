@@ -49,11 +49,13 @@ void ScenePursue::update(float dtime, SDL_Event *event)
 	agents[0]->setTargetAgent(agents[1]);
 	agents[0]->update(dtime, event);
 	agents[1]->update(dtime, event);
+	predict = agents[0]->getTarget();
 }
 
 void ScenePursue::draw()
 {
 	draw_circle(TheApp::Instance()->getRenderer(), (int)target.x, (int)target.y, 15, 255, 0, 0, 255);
+	draw_circle(TheApp::Instance()->getRenderer(), (int)predict.x, (int)predict.y, 15, 0, 255, 0, 255);
 	agents[0]->draw();
 	agents[1]->draw();
 }

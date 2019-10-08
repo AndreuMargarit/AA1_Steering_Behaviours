@@ -11,6 +11,7 @@
 #include "SceneFlock.h"
 #include "ScenePursue.h"
 #include "SceneEvade.h"
+#include "ScenePathFollowing.h"
 
 
 using namespace std;
@@ -65,34 +66,36 @@ int main(int argc, char ** argv)
 				curr_scene = new SceneEvade;
 				app->setWindowTitle(curr_scene->getTitle());
 			}
-			if ((event.key.keysym.scancode == SDL_SCANCODE_Q) || (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))
+			if (event.key.keysym.scancode == SDL_SCANCODE_7)
 			{
-				break;
-			case SDL_SCANCODE_7:
 				delete(curr_scene);
 				curr_scene = new SceneWander;
 				app->setWindowTitle(curr_scene->getTitle());
-				break;
-			case SDL_SCANCODE_8:
+			}
+			if (event.key.keysym.scancode == SDL_SCANCODE_8)
+			{
 				delete(curr_scene);
 				curr_scene = new SceneFlock;
 				app->setWindowTitle(curr_scene->getTitle());
-				break;
-			case SDL_SCANCODE_Q:
-			case SDL_SCANCODE_ESCAPE:
+			}if (event.key.keysym.scancode == SDL_SCANCODE_9)
+			{
+				delete(curr_scene);
+				curr_scene = new ScenePathFollowing;
+				app->setWindowTitle(curr_scene->getTitle());
+			}
+			if ((event.key.keysym.scancode == SDL_SCANCODE_Q) || (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE))
+			{
 				quit = true;
-				break;
-			case SDL_SCANCODE_F:
+			}
+			if (event.key.keysym.scancode == SDL_SCANCODE_F)
+			{
 				app->setFullScreen();
-			default:
-				break;
 			}
 			break;
 		case SDL_QUIT:
 			quit = true;
 			break;
 		}
-
 	}
 
 	return 0;

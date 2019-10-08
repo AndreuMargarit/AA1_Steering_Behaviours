@@ -244,6 +244,7 @@ void Agent::setNeighbors(std::vector<Agent*> agents) {
 		}
 	}
 }
+
 void Agent::setTargetAgent(Agent * target)
 {
 	targetAgent = target;

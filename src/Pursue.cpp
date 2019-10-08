@@ -13,30 +13,20 @@ Pursue::~Pursue()
 
 void Pursue::applySteeringForce(Agent *agent, float dtime)
 {
-	/*targetPos = agent->getTargetAgent()->getPosition();
-
-	timeLookAhead = (agent->getTargetAgent()->getTarget() - agent->getTargetAgent()->getPosition()).Length();
-
-	if (timeLookAhead > maxTime)
-	{
-		timeLookAhead = maxTime;
-	}
-
-	targetVel = timeLookAhead;*/
-
 	if (agent->getVelocity().Length() !=0)
 	{
 		dist = agent->getTargetAgent()->getPosition() - agent->getPosition();
-		t =  dist.Length() / agent->getVelocity().Length();
+		float length = agent->getVelocity().Length();
+		t = dist.Length() / length;
 	}
 	else
 	{
 		dist = agent->getTargetAgent()->getPosition() - agent->getPosition();
 		t = dist.Length() / agent->getMaxVelocity();
 	}
-	
+	std::cout << t << std::endl;
 	if (t > maxTime) t = maxTime;
-
+	
 	agent->setTarget((agent->getTargetAgent()->getPosition() + agent->getTargetAgent()->getVelocity() * t));
 	//agent->setTarget(agent->getTargetAgent()->getTarget() * (agent->getTargetAgent()->getPosition()-agent->getPosition()));
 
@@ -55,6 +45,5 @@ void Pursue::applySteeringForce(Agent *agent, float dtime)
 	agent->setVelocity(velocity);
 	agent->setPosition(agent->getPosition() + velocity * dtime);
 	
-	std::cout << agent->getPosition().x << " " << agent->getPosition().y << std::endl;
 	
 }
