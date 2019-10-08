@@ -3,18 +3,34 @@
 using namespace std;
 
 Agent::Agent() : sprite_texture(0),
-                 position(Vector2D(100, 100)),
-	             target(Vector2D(1000, 100)),
-	             velocity(Vector2D(0,0)),
-	             speed(0.5),
-	             max_force(50),
-				 mass(0.1),
-	             max_velocity(200),
-	             orientation(0),
-				 sprite_num_frames(0),
-	             sprite_w(0),
-	             sprite_h(0),
-	             draw_sprite(false)
+	position(Vector2D(100, 100)),
+	target(Vector2D(1000, 100)),
+	velocity(Vector2D(0, 0)),
+	speed(0.5),
+	max_force(50),
+	mass(0.1),
+	max_velocity(200),
+	orientation(0),
+	sprite_num_frames(0),
+	sprite_w(0),
+	sprite_h(0),
+	draw_sprite(false)
+{
+}
+
+Agent::Agent(Vector2D veloc) : sprite_texture(0),
+	position(Vector2D(100, 100)),
+	target(Vector2D(1000, 100)),
+	velocity(veloc),
+	speed(0.5),
+	max_force(50),
+	mass(0.1),
+	max_velocity(200),
+	orientation(0),
+	sprite_num_frames(0),
+	sprite_w(0),
+	sprite_h(0),
+	draw_sprite(false)
 {
 }
 
@@ -31,6 +47,10 @@ void Agent::setBehavior(SteeringBehavior *behavior)
 	steering_behaviour = behavior;
 }
 
+Agent::SteeringBehavior* Agent::getBehavior() {
+	return steering_behaviour;
+}
+
 Vector2D Agent::getPosition()
 {
 	return position;
@@ -44,6 +64,22 @@ Vector2D Agent::getTarget()
 Vector2D Agent::getVelocity()
 {
 	return velocity;
+}
+
+Vector2D Agent::getCircleCenter() {
+	return circleCenter;
+}
+
+std::vector<Agent*> Agent::getNeighbors() {
+	return neighbors;
+}
+
+void Agent::setAgents(std::vector<Agent*> agents) {
+	neighbors = agents;
+}
+
+void Agent::setCircleCenter(Vector2D circleCenter) {
+	this->circleCenter = circleCenter;
 }
 
 float Agent::getMaxVelocity()
@@ -84,6 +120,10 @@ float Agent::getMaxForce()
 void Agent::setMaxForce(float _force)
 {
 	max_force = _force;
+}
+
+float Agent::getOrientation() {
+	return orientation;
 }
 
 void Agent::update(float dtime, SDL_Event *event)
@@ -160,9 +200,13 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 	return true;
 }
 
-void Agent::getDesiredVelocity(Vector2D& desiredVelocityOut) {
-	desiredVelocityOut = target - position;
+void Agent::getDesiredVelocity(Vector2D& desiredVelocityOut, bool seek, float speedFactor) {
+	if (seek)
+		desiredVelocityOut = target - position;
+	else
+		desiredVelocityOut = position - target;
 	desiredVelocityOut.Normalize();
+	desiredVelocityOut *= max_velocity * speedFactor;
 }
 
 void Agent::getDistanceToTarget(float& distanceOut) {
@@ -170,6 +214,36 @@ void Agent::getDistanceToTarget(float& distanceOut) {
 	distanceOut = (target - position).Length();
 }
 
+void Agent::calculateSpeedFactor(float& speedFactor, float dist, float radius) {
+	speedFactor = 1;
+	if (dist < radius)
+		speedFactor = dist / radius;
+}
+
+void Agent::calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity) {
+
+	vDelta = desiredVelocity - velocity;
+	vDelta /= max_velocity;
+
+	steeringForce = vDelta * max_force;
+}
+
+void Agent::UpdateForces(Vector2D steeringForce, float dtime) {
+	// acceleration = steeringForce / mass;
+	velocity += (steeringForce / mass) * dtime;
+	velocity.Truncate(max_velocity);
+	position += velocity * dtime;
+}
+
+void Agent::setNeighbors(std::vector<Agent*> agents) {
+	for (int i = 0; i < agents.size(); i++) {
+		if (agents[i] != this) {
+			float distance = (this->getPosition() - agents[i]->getPosition()).Length();
+			if (NEIGHBOR_RADIUS > distance)
+				this->neighbors.push_back(agents[i]);
+		}
+	}
+}
 void Agent::setTargetAgent(Agent * target)
 {
 	targetAgent = target;

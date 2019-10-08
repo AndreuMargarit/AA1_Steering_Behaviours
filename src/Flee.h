@@ -9,6 +9,5 @@ public:
 	~Flee();
 	void applySteeringForce(Agent *agent, float dtime);
 private:
-	Vector2D desiredVelocity, vDelta, steeringForce, acceleration, velocity;
-	float dist;
+	Vector2D desiredVelocity, steeringForce;
 };
