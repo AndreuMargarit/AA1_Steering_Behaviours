@@ -245,6 +245,21 @@ void Agent::setNeighbors(std::vector<Agent*> agents) {
 	}
 }
 
+bool Agent::getNewPath()
+{
+	return newPath;
+}
+
+void Agent::setNewPath(bool state)
+{
+	newPath = state;
+}
+
+void Agent::setMaxVel(float vel)
+{
+	max_velocity = vel;
+}
+
 void Agent::setTargetAgent(Agent * target)
 {
 	targetAgent = target;

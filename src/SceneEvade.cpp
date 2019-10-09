@@ -8,14 +8,15 @@ SceneEvade::SceneEvade()
 {
 	Agent *agent = new Agent;
 	agent->setBehavior(new Evade);
-	agent->setPosition(Vector2D(100, 300));
+	agent->setPosition(Vector2D(300, 300));
 	agent->loadSpriteTexture("../res/zombie1.png", 8);
 	agents.push_back(agent);
 	agent = new Agent();
 	agent->setBehavior(new Seek);
-	agent->setPosition(Vector2D(640, 360));
+	agent->setPosition(Vector2D(100, 360));
 	agent->setTarget(Vector2D(640, 360));
 	agent->loadSpriteTexture("../res/soldier.png", 4);
+	agent->setMaxVel(400);
 	agents.push_back(agent);
 	target = Vector2D(640, 360);
 }

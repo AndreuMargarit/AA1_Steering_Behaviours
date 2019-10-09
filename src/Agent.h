@@ -42,6 +42,7 @@ private:
 	int sprite_h;
 	std::vector<Agent*> neighbors;
 	const int NEIGHBOR_RADIUS = 10;
+	bool newPath = false;
 
 public:
 	Agent();
@@ -73,7 +74,10 @@ public:
 	void calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity);
 	void UpdateForces(Vector2D steeringForce, float dtime);
 	void setNeighbors(std::vector<Agent*> agents);
-	int getNumPathPoints();
+	bool getNewPath();
+	void setNewPath(bool state);
+	void setMaxVel(float vel);
+
 	
 	std::vector<Agent*> getNeighbors();
 	void setTargetAgent(Agent* target);
