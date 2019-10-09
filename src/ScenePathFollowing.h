@@ -15,7 +15,8 @@ public:
 private:
 	std::vector<Agent*> agents;
 	Vector2D target;
-	Vector2D trail[110];
+	Vector2D trail[150];
+	std::vector<Vector2D> pathPoints;
 	int trailCounter, trailMax, nextTrail = 0;
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Agent.h"
+#include <vector>
 
 class PathFollowing :
 	public Agent::SteeringBehavior
@@ -13,7 +14,7 @@ public:
 	void applySteeringForce(Agent *agent, float dtime);
 private:
 	Vector2D desiredVelocity, steeringForce;
-	Vector2D pathPoints[4];
+	std::vector<Vector2D> pathPoints;
 	int pathPoint = 0;
 	int numPathPoints = 4;
 	float dist;

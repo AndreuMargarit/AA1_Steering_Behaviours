@@ -40,7 +40,11 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
+<<<<<<< HEAD
 	std::vector<Agent*> flock;
+=======
+	bool newPath = false;
+>>>>>>> 920fa5520579d91d01aa7e117173c8f9595d3a01
 
 public:
 	Agent();
@@ -71,7 +75,14 @@ public:
 	void calculateSpeedFactor(float& speedFactor, float dist, float radius);
 	void calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity);
 	void UpdateForces(Vector2D steeringForce, float dtime);
+<<<<<<< HEAD
 	int getNumPathPoints();
+=======
+	bool getNewPath();
+	void setNewPath(bool state);
+	void setMaxVel(float vel);
+
+>>>>>>> 920fa5520579d91d01aa7e117173c8f9595d3a01
 	
 	std::vector<Agent*> getNeighbors();
 	void setFlock(std::vector<Agent*>);
