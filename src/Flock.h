@@ -24,8 +24,5 @@ public:
 	void applySteeringForce(Agent *agent, float dtime);
 
 	void calculateFlockingForce(Agent* agent, Vector2D& align, Vector2D& cohesion, Vector2D& flock);
-	Vector2D applyAlignment(Agent* agent);
-	Vector2D applyCohesion(Agent* agent);
-	Vector2D applyFlee(Agent* agent);
 };
 

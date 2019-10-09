@@ -235,9 +235,6 @@ void Agent::UpdateForces(Vector2D force, float dtime) {
 	position += velocity * dtime;
 }
 
-<<<<<<< HEAD
-=======
-
 bool Agent::getNewPath()
 {
 	return newPath;
@@ -253,7 +250,6 @@ void Agent::setMaxVel(float vel)
 	max_velocity = vel;
 }
 
->>>>>>> 920fa5520579d91d01aa7e117173c8f9595d3a01
 void Agent::setTargetAgent(Agent * target)
 {
 	targetAgent = target;

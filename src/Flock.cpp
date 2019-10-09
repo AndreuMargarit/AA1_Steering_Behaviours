@@ -48,38 +48,3 @@ void Flock::calculateFlockingForce(Agent* agent, Vector2D& align, Vector2D& cohe
 		align = cohesion = flock = Vector2D(0, 0);
 	}
 }
-
-Vector2D Flock::applyAlignment(Agent* agent) {
-	if (agent->getNeighbors().size() < 1) return Vector2D(0, 0);
-	Vector2D averageVelocity;
-	std::vector<Agent*> agents = agent->getNeighbors();
-	for (int i = 0; i < agents.size(); i++) {
-		averageVelocity += agents[i]->getVelocity();
-	}
-	averageVelocity /= agents.size();
-	return averageVelocity.Normalize();
-}
-
-Vector2D Flock::applyCohesion(Agent* agent) {
-	if (agent->getNeighbors().size() < 1) return Vector2D(0, 0);
-	Vector2D averagePosition;
-	std::vector<Agent*> agents = agent->getNeighbors();
-	for (int i = 0; i < agents.size(); i++) {
-		averagePosition += agents[i]->getPosition();
-	}
-	averagePosition /= agents.size();
-	averagePosition -= agent->getPosition();
-	return averagePosition.Normalize();
-}
-
-Vector2D Flock::applyFlee(Agent* agent) {
-	if (agent->getNeighbors().size() < 1) return Vector2D(0, 0);
-	Vector2D separationVector;
-	std::vector<Agent*> agents = agent->getNeighbors();
-	for (int i = 0; i < agents.size(); i++) {
-		separationVector += (agent->getPosition() - agents[i]->getPosition());
-	}
-	separationVector /= agents.size();
-	return separationVector.Normalize();
-
-}
