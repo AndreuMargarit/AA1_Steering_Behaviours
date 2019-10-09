@@ -71,11 +71,11 @@ Vector2D Agent::getCircleCenter() {
 }
 
 std::vector<Agent*> Agent::getNeighbors() {
-	return neighbors;
+	return flock;
 }
 
 void Agent::setAgents(std::vector<Agent*> agents) {
-	neighbors = agents;
+	flock = agents;
 }
 
 void Agent::setCircleCenter(Vector2D circleCenter) {
@@ -228,21 +228,11 @@ void Agent::calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelo
 	steeringForce = vDelta * max_force;
 }
 
-void Agent::UpdateForces(Vector2D steeringForce, float dtime) {
-	// acceleration = steeringForce / mass;
-	velocity += (steeringForce / mass) * dtime;
+void Agent::UpdateForces(Vector2D force, float dtime) {
+	// acceleration = force / mass;
+	velocity += (force / mass) * dtime;
 	velocity.Truncate(max_velocity);
 	position += velocity * dtime;
-}
-
-void Agent::setNeighbors(std::vector<Agent*> agents) {
-	for (int i = 0; i < agents.size(); i++) {
-		if (agents[i] != this) {
-			float distance = (this->getPosition() - agents[i]->getPosition()).Length();
-			if (NEIGHBOR_RADIUS > distance)
-				this->neighbors.push_back(agents[i]);
-		}
-	}
 }
 
 void Agent::setTargetAgent(Agent * target)
@@ -253,4 +243,8 @@ void Agent::setTargetAgent(Agent * target)
 Agent* Agent::getTargetAgent()
 {
 	return targetAgent;
+}
+
+void Agent::setFlock(std::vector<Agent*> agents) {
+	flock = agents;
 }

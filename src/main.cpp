@@ -23,7 +23,7 @@ int main(int argc, char ** argv)
 
 	SDL_SimpleApp *app = SDL_SimpleApp::Instance();
 
-	Scene *curr_scene = new SceneSeek;
+	Scene *curr_scene = new SceneFlock;
 	app->setWindowTitle(curr_scene->getTitle());
 
 	while (!quit)

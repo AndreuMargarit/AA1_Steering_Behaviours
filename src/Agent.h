@@ -40,8 +40,7 @@ private:
 	int sprite_num_frames;
 	int sprite_w;
 	int sprite_h;
-	std::vector<Agent*> neighbors;
-	const int NEIGHBOR_RADIUS = 10;
+	std::vector<Agent*> flock;
 
 public:
 	Agent();
@@ -72,10 +71,10 @@ public:
 	void calculateSpeedFactor(float& speedFactor, float dist, float radius);
 	void calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity);
 	void UpdateForces(Vector2D steeringForce, float dtime);
-	void setNeighbors(std::vector<Agent*> agents);
 	int getNumPathPoints();
 	
 	std::vector<Agent*> getNeighbors();
+	void setFlock(std::vector<Agent*>);
 	void setTargetAgent(Agent* target);
 	Agent* getTargetAgent();
 };

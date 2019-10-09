@@ -6,8 +6,9 @@ using namespace std;
 
 SceneFlock::SceneFlock()
 {
-	for (int i = 0; i < 20; i++) {
+	for (int i = 0; i < 10; i++) {
 		Agent *agent = new Agent(Vector2D(rand() % 5, rand() % 5));
+		agent->setMass(0.2f);
 		agent->setBehavior(new Flock);
 		int randomX = rand() % 1280;
 		int randomY = rand() % 768;
@@ -21,7 +22,10 @@ SceneFlock::SceneFlock()
 
 		agents.push_back(agent);
 	}
-	
+	for (int i = 0; i < 10; i++) {
+		agents[i]->setFlock(agents);
+	}
+
 	target = Vector2D(640, 360);
 }
 
@@ -51,7 +55,6 @@ void SceneFlock::update(float dtime, SDL_Event *event)
 	}
 
 	for (int i = 0; i < (int)agents.size(); i++) {
-		agents[i]->setNeighbors(agents);
 		agents[i]->update(dtime, event);
 	}
 }
