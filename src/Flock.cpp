@@ -12,7 +12,7 @@ Flock::~Flock()
 
 void Flock::applySteeringForce(Agent *agent, float dtime) {
 	
-	agent->getDesiredVelocity(desiredVelocity);
+	agent->getDesiredVelocity(desiredVelocity, 1);
 	agent->calculateSteeringForce(steeringForce, desiredVelocity);
 	calculateFlockingForce(agent, alignment, cohesion, flock);
 	std::cout << alignment.x << ' ' << alignment.y << std::endl;

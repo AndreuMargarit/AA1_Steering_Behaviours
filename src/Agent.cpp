@@ -209,6 +209,12 @@ void Agent::getDesiredVelocity(Vector2D& desiredVelocityOut, bool seek, float sp
 	desiredVelocityOut *= max_velocity * speedFactor;
 }
 
+void Agent::getDesiredVelocityPath(Vector2D & desiredVelocityOut, float speedFactor)
+{
+	desiredVelocityOut.Normalize();
+	desiredVelocityOut *= max_velocity * speedFactor;
+}
+
 void Agent::getDistanceToTarget(float& distanceOut) {
 
 	distanceOut = (target - position).Length();

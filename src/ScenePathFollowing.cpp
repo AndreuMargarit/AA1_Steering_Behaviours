@@ -18,6 +18,8 @@ ScenePathFollowing::ScenePathFollowing()
 	pathPoints.push_back(Vector2D(200, 550));
 	pathPoints.push_back(Vector2D(1000, 550));
 	pathPoints.push_back(Vector2D(1000, 250));
+
+
 }
 
 ScenePathFollowing::~ScenePathFollowing()
@@ -63,12 +65,13 @@ void ScenePathFollowing::draw()
 {
 	for (int i = 0; i < trailMax; i++)
 	{
-		draw_circle(TheApp::Instance()->getRenderer(), trail[i].x, trail[i].y, 15, 255, 0, 0, 255);
+		draw_circle(TheApp::Instance()->getRenderer(), trail[i].x, trail[i].y, 10, 0, 0, 255, 255);
 	}
 
 	for (int i = 0; i < pathPoints.size(); i++)
 		draw_circle(TheApp::Instance()->getRenderer(), pathPoints[i].x, pathPoints[i].y, 15, 0, 255, 255, 255);
 
+	draw_circle(TheApp::Instance()->getRenderer(), 600, 300, 25, 255, 0, 0, 255);
 	agents[0]->draw();
 }
 

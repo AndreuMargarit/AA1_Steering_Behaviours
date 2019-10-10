@@ -68,11 +68,11 @@ public:
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 	void getDesiredVelocity(Vector2D& desiredVelocityOut, bool seek = true, float speedFactor = 1);
+	void getDesiredVelocityPath(Vector2D& desiredVelocityOut, float speedFactor = 1);
 	void getDistanceToTarget(float& distanceOut);
 	void calculateSpeedFactor(float& speedFactor, float dist, float radius);
 	void calculateSteeringForce(Vector2D& steeringForce, Vector2D desiredVelocity);
 	void UpdateForces(Vector2D steeringForce, float dtime);
-	int getNumPathPoints();
 	bool getNewPath();
 	void setNewPath(bool state);
 	void setMaxVel(float vel);
